@@ -1,0 +1,1 @@
+# Medion-S17404-Hackintosh-OpenCore
