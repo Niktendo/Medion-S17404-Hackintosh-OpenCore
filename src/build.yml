@@ -9,6 +9,8 @@ ACPI:
   SSDT-PLUG: "ACPI/SSDT-PLUG.aml"
   SSDT-PNLF: "ACPI/SSDT-PNLF.aml"
   SSDT-XOSI: "ACPI/SSDT-XOSI.aml"
+  SSDT-XOSI: "ACPI/SSDT-XOSI.aml"
+#  MaLd0n: "ACPI/MaLd0n.aml"
 Drivers:
   - HfsPlus
 @ifdef(RELEASE)
