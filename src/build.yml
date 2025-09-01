@@ -36,7 +36,7 @@ Kexts:
       - VoodooI2CServices
       - VoodooGPIO
   AppleALC: latest
-  itlwm: latest
+  itlwm: OpenIntelWireless/itlwm=latest
   SMCBatteryManager: latest
   SMCProcessor: latest
   SMCSuperIO: latest
