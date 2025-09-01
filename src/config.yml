@@ -84,7 +84,7 @@ NVRAM:
       # `debug=0x100`     (debug mask; disables watchdog to avoid panic reboot)
       # `keepsyms=1`      (show panic log debug symbols)
       # `msgbuf=1048576`  (Resizes kernel msg buffer to 1 MB; avoids truncation)
-      boot-args:                      String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 igfxonln=1 agdpmod=vit9696 -wegnoegpu"
+      boot-args:                      String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 agdpmod=vit9696"
 @endif
 
 
@@ -92,7 +92,7 @@ NVRAM:
 NVRAM:
   Add:
     7C436110-AB2A-4BBB-A880-FE41995C9F82:
-      boot-args:                      String  | ""
+      boot-args:                      String  | "agdpmod=vit9696"
 @endif
 
 ################################################################################
