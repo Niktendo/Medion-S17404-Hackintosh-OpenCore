@@ -33,7 +33,7 @@ jobs:
         run: |
           cd src
           wget -O bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
-          bash bootstrap.sh "build -c ${{ github.workspace }} -p config.yml"
+          bash bootstrap.sh build -c ${{ github.workspace }} -p config.yml
           
 #      - name: Upload a Build Artifact
 #        uses: actions/upload-artifact@v4.6.2
