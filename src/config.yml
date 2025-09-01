@@ -84,7 +84,7 @@ NVRAM:
       # `debug=0x100`     (debug mask; disables watchdog to avoid panic reboot)
       # `keepsyms=1`      (show panic log debug symbols)
       # `msgbuf=1048576`  (Resizes kernel msg buffer to 1 MB; avoids truncation)
-      boot-args:                      String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 alcid=3 agdpmod=vit9696"
+      boot-args:                      String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 agdpmod=vit9696"
 @endif
 
 
@@ -92,7 +92,7 @@ NVRAM:
 NVRAM:
   Add:
     7C436110-AB2A-4BBB-A880-FE41995C9F82:
-      boot-args:                      String  | "alcid=3 agdpmod=vit9696"
+      boot-args:                      String  | "agdpmod=vit9696"
 @endif
 
 ################################################################################
@@ -169,6 +169,7 @@ Misc:
     #   - Disabled: No model, Secure Boot will be disabled.
     #   - Default: Currently set to x86legacy
     # - @see https://dortania.github.io/OpenCore-Post-Install/universal/security/applesecureboot.html#securebootmodel
+    #SecureBootModel:        String  | "Default"
     SecureBootModel:        String  | "Disabled"
     # OpenCore vaulting configuration (optional=no vault enforced, insecure)
     # - @see https://dortania.github.io/OpenCore-Post-Install/universal/security/vault.html
@@ -223,17 +224,34 @@ DeviceProperties:
 ################################################################################
 #                      Optional BIOS/firmware related fixes                    #
 ################################################################################
+
+#Scenario 1:
+#Booter:
+#  Quirks:
+#    DevirtualiseMmio:                 Boolean | true
+#    ProtectUefiServices:              Boolean | true
+#    SyncRuntimePermissions:           Boolean | true
+#
+#Kernel:
+#  Quirks:
+#    AppleXcpmCfgLock:                 Boolean | true
+#    DisableIoMapper:                  Boolean | true
+#
+#UEFI:
+#  Quirks:
+#    ReleaseUsbOwnership:              Boolean | true
+
+#Scenario 2:
 Booter:
   Quirks:
-    DevirtualiseMmio:                 Boolean | true
     ProtectUefiServices:              Boolean | true
-    SyncRuntimePermissions:           Boolean | true
+    SetupVirtualMap:                  Boolean | false
 
 Kernel:
   Quirks:
     AppleXcpmCfgLock:                 Boolean | true
     DisableIoMapper:                  Boolean | true
 
-UEFI:
+ACPI:
   Quirks:
-    ReleaseUsbOwnership:              Boolean | true
+    ResetLogoStatus:                  Boolean | false
