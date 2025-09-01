@@ -32,6 +32,7 @@ jobs:
       - name: Build
         run: |
           cd src
+          ls -la
           wget -O bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
           bash bootstrap.sh build -c ${{ github.workspace }} -p config.yml
           
