@@ -10,6 +10,9 @@ on:
           description: "URLs to additional files to be included"
           required: false
 
+env:
+  version: 1.0
+
 jobs:
   Build-OpenCore-sequoia:
     runs-on: ubuntu-latest
@@ -33,5 +36,5 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: 
+          name: Build (v${{ env.version }})
           path: ${{ github.workspace }}/dist/
