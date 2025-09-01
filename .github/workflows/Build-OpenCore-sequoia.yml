@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt dist-upgrade -y
+#      - name: Install dependencies
+#        run: |
+#          sudo apt update
+#          sudo apt dist-upgrade -y
           
       - name: Checkout
         uses: actions/checkout@v5.0.0
@@ -31,9 +31,9 @@ jobs:
 
       - name: Build
         run: |
-          ls -la
+          cd src
           wget -O bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
-          bash bootstrap.sh "-p config.yml"
+          bash bootstrap.sh "build -c ${{ github.workspace }} -p config.yml"
           
 #      - name: Upload a Build Artifact
 #        uses: actions/upload-artifact@v4.6.2
