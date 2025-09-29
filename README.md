@@ -23,7 +23,7 @@
 * Sleep/wake
 * Keyboard backlight
 
-### Instructions
+### Installation instructions
 **NOTE: If you're performing an online install, you'll need a USB-to-Ethernet dongle since WiFi won't work until you've installed HeliPort**
 1. Follow dortania guide https://dortania.github.io/OpenCore-Install-Guide/installer-guide/ for creating a bootable install media.
 2. Build your EFI.zip using the GitHub Actions Workflow https://github.com/Niktendo/Medion-S17404-Hackintosh-OpenCore/actions/workflows/Build-OpenCore.yml and copy it to your USB drive.
@@ -32,7 +32,7 @@
 5. Setup macOS after finishing the installation.
 6. Download and install HeliPort from https://github.com/OpenIntelWireless/HeliPort/releases to get WiFi working.
 7. Profit!
-8. Optional: Mount your EFI partition using https://github.com/# orpnewt/MountEFI and edit your config.plist using https://github.com/corpnewt/ProperTree to set Misc -> Security -> SecureBootModel to Default.
+8. Optional: Mount your EFI partition using https://github.com/corpnewt/MountEFI and edit your config.plist using https://github.com/corpnewt/ProperTree to set Misc -> Security -> SecureBootModel to Default.
 9. Optional: Mount the EFI partition of your USB drive and copy the contents to the EFI partition of your Macintosh HD to make booting without an USB key possible.
 
 ### Fixing audio on macOS Tahoe
