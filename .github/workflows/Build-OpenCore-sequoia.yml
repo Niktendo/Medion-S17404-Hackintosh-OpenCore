@@ -3,9 +3,14 @@ name: Build OpenCore Sequoia
 on:
   workflow_dispatch:
       inputs:
-        packages:
-          description: "URLs to additional files to be included"
-          required: false
+        edition:
+         required: true
+         type: choice
+         description: Select edition
+         options:
+         - DEBUG
+         - RELEASE
+         default: DEBUG
 
 env:
   version: 1.0
@@ -26,6 +31,7 @@ jobs:
 
       - name: Build
         run: |
+          mv src/build-${{ inputs.edition }}.yml src/build.yml
           wget -O src/bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
           bash src/bootstrap.sh build -c ${{ github.workspace }} -p config.yml
           
