@@ -46,18 +46,6 @@ Misc:
 @endif
 
 ################################################################################
-#                           Platform (SMBIOS) fixes                            #
-################################################################################
-
-PlatformInfo:
-  Generic:
-    SystemProductName:     String  | "MacBookPro16,1"
-    SystemSerialNumber:    String  | "C02DX0L2MD6N"
-    MLB:                   String  | "C020531024NN9PRA8"
-    SystemUUID:            String  | "95E328F8-EFBF-4C3D-A706-7DB2456595FF"
-    ROM:                   Data    | <0016cb001122>
-
-################################################################################
 
 @ifdef(DEBUG)
 # Debugging quirks (recommended with DEBUG version of OpenCore)
