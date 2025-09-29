@@ -1,4 +1,4 @@
-name: Build OpenCore Sequoia
+name: Build OpenCore
 
 on:
   workflow_dispatch:
@@ -11,12 +11,16 @@ on:
          - DEBUG
          - RELEASE
          default: DEBUG
+        serialdata:
+         required: true
+         description: Custom .serialdata file path
+         default: https://raw.githubusercontent.com/Niktendo/Medion-S17404-Hackintosh-OpenCore/refs/heads/main/src/.serialdata.example
 
 env:
   version: 1.0
 
 jobs:
-  Build-OpenCore-sequoia:
+  Build-OpenCore:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +36,7 @@ jobs:
       - name: Build
         run: |
           mv src/build-${{ inputs.edition }}.yml src/build.yml
+          wget -O src/.serialdata ${{ inputs.serialdata }}
           wget -O src/bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
           bash src/bootstrap.sh build -c ${{ github.workspace }} -p config.yml
           
