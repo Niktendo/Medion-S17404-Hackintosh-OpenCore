@@ -1,0 +1,56 @@
+---
+version: latest
+build: RELEASE
+target: X64
+---
+ACPI:
+  SSDT-RTCAWAC: "ACPI/SSDT-RTCAWAC.aml"
+  SSDT-EC: "ACPI/SSDT-EC.aml"
+  SSDT-PLUG: "ACPI/SSDT-PLUG.aml"
+  SSDT-PNLF: "ACPI/SSDT-PNLF.aml"
+  SSDT-XOSI: "ACPI/SSDT-XOSI.aml"
+  SSDT-XOSI: "ACPI/SSDT-XOSI.aml"
+#  MaLd0n: "ACPI/MaLd0n.aml"
+
+Drivers:
+  - HfsPlus
+@ifdef(RELEASE)
+  - OpenCanopy
+@endif
+  - OpenRuntime
+  - ResetNvramEntry
+
+Kexts:
+  Lilu: latest
+  NVMeFix: latest
+  VirtualSMC: latest
+  VoodooPS2:
+    specifier: acidanthera/VoodooPS2=latest
+    bundled:
+      - VoodooInput
+      - VoodooPS2Keyboard
+  WhateverGreen: latest
+  VoodooI2C:
+    specifier: VoodooI2C/VoodooI2C=latest
+    bundled:
+      - VoodooI2CServices
+      - VoodooGPIO
+  AppleALC: latest
+  itlwm: OpenIntelWireless/itlwm=latest
+  SMCBatteryManager: latest
+  SMCProcessor: latest
+  SMCSuperIO: latest
+  VoodooI2CHID: latest
+  IntelBluetoothFirmware:
+    specifier: OpenIntelWireless/IntelBluetoothFirmware=latest
+    bundled:
+      - IntelBluetoothFirmware
+      - IntelBTPatcher
+  BrcmPatchRAM:
+    specifier: acidanthera/BrcmPatchRAM=latest
+    bundled:
+      - BlueToolFixup
+
+Tools:
+  # Also known as UEFIShell
+  - OpenShell
