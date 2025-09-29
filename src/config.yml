@@ -1,20 +1,17 @@
 ## @file
-# config.plist configuration file patches for running macOS on Hyper-V
+# config.plist configuration file patches for running macOS on Medion S17404
 #
-# Copyright (c) 2021-2025, Goldfish64. All rights reserved.
-# Copyright (c) 2023-2025, Cory Bennett. All rights reserved.
+# Copyright (c) 2025, Niktendo. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause
 ##
 
-# This file builds on the existing defaults from OCE-Build and MacHyperVSupport.
+# This file builds on the existing defaults from OCE-Build.
 # @see https://github.com/Qonfused/OCE-Build/blob/main/docs/resources/base-config.yml
-# @see https://github.com/acidanthera/MacHyperVSupport/blob/master/README.md
 
 # Refer to the below resources for more information on sensible defaults:
 # - https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf
 #   (or https://dortania.github.io/docs/latest/Configuration.html)
 
-#region: Base Configuration - Keep in sync with docs/resources/base-config.yml
 
 ################################################################################
 #                             Misc. Cosmetic fixes                             #
@@ -29,7 +26,7 @@ Misc:
   Boot:
     HideAuxiliary:                    Boolean | false
 
-# Changes default macOS installer/keyboard language to English.
+# Sets default language for macOS installer/keyboard.
 # - You can find a list of supported languages below (convert HEX -> ASCI):
 #   https://github.com/acidanthera/OpenCorePkg/blob/master/Utilities/AppleKeyboardLayouts/AppleKeyboardLayouts.txt
 NVRAM:
@@ -84,7 +81,7 @@ NVRAM:
       # `debug=0x100`     (debug mask; disables watchdog to avoid panic reboot)
       # `keepsyms=1`      (show panic log debug symbols)
       # `msgbuf=1048576`  (Resizes kernel msg buffer to 1 MB; avoids truncation)
-      boot-args:                       String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 agdpmod=vit9696"
+      boot-args:                       String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 alcid=3 agdpmod=vit9696 -igfxblt"
 @endif
 
 
@@ -92,7 +89,7 @@ NVRAM:
 NVRAM:
   Add:
     7C436110-AB2A-4BBB-A880-FE41995C9F82:
-      boot-args:                      String  | "agdpmod=vit9696"
+      boot-args:                      String  | "alcid=3 agdpmod=vit9696 -igfxblt"
 @endif
 
 ################################################################################
@@ -121,8 +118,6 @@ Misc:
 UEFI:
   @override
   ReservedMemory:                     Array   | []
-
-#endregion
 
 ################################################################################
 #                               ACPI related fixes                             #
@@ -178,9 +173,6 @@ NVRAM:
     7C436110-AB2A-4BBB-A880-FE41995C9F82:
       # Enables System Integrity Protection (SIP) setting in macOS.
       #
-      # By default, we disable kext signing (0x1) for MacHyperVFramebuffer;
-      # required for macOS 11 (Big Sur) and newer.
-      #
       # - Possible values include:
       #   - 00000000: Default (enabled)
       #   - 01000000: Disables Kext signing
@@ -221,7 +213,7 @@ DeviceProperties:
       model:                          String  | "Intel UHD Graphics 620"
 
 ################################################################################
-#                             Security related fixes                           #
+#                            Bluetooth related fixes                           #
 ################################################################################
 
 NVRAM:
