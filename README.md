@@ -36,7 +36,7 @@
 9. Optional: Mount the EFI partition of your USB drive and copy the contents to the EFI partition of your Macintosh HD to make booting without an USB key possible.
 
 ### Fixing audio on macOS Tahoe
-**NOTE: In order to make the onboard audio controller working again, you'll need to permanently disable Apple Secure Boot and System Integrity Protection. This is not permament, so you'll have to repeat these step after every system update.**
+**NOTE: In order to make the onboard audio controller working again, you'll need to permanently disable Apple Secure Boot and System Integrity Protection. Also, this patch is not permament, so you'll have to repeat these steps after every system update.**
 
 Since Apple has removed AppleHDA in Tahoe, the only way to get working onboard audio is to patch the filesystem via OpenCore Legacy Patcher Mod.
 1. Mount your EFI partition and open your config.plist.
@@ -49,4 +49,4 @@ Since Apple has removed AppleHDA in Tahoe, the only way to get working onboard a
 6. Open OCLP-Mod and choose the top-right option (Yes, it's chinese - i've used Google Translate on my phone.).
 7. Choose the first option in the dialog and wait until it's done.
 8. Reboot and check your audio devices in settings.
-9. Optional, but recommended: Mount your EFI partition, edit your config.plist and delete `amfi=0x80` from `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args`. Reset your NVRAM afterwards.
+9. Optional, but recommended: Mount your EFI partition, edit your config.plist and delete `amfi=0x80` from `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args`, don't change other settings back. Reset your NVRAM afterwards.
