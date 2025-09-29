@@ -38,12 +38,12 @@
 ### Fixing audio on macOS Tahoe
 **NOTE: In order to make the onboard audio controller working again, you'll need to permanently disable Apple Secure Boot and System Integrity Protection. This is not permament, so you'll have to repeat these step after every system update.**
 
-Since Apple has removed AppleHDA in Tahoe the only way to get working onboard audio is to patch the filesystem via OpenCore Legacy Patcher Mod.
+Since Apple has removed AppleHDA in Tahoe, the only way to get working onboard audio is to patch the filesystem via OpenCore Legacy Patcher Mod.
 1. Mount your EFI partition and open your config.plist.
 2. Change the following entries:
-   Misc -> Security -> SecureBootModel to Disabled
-   NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config to <03080000>
-   NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args add amfi=0x80
+   * Misc -> Security -> SecureBootModel to Disabled
+   * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> csr-active-config to <03080000>
+   * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args add amfi=0x80
 4. Reboot and clear NVRAM.
 5. Download and install the latest Release of OCLP-Mod from https://github.com/laobamac/OCLP-Mod/releases.
 6. Open OCLP-Mod and choose the top-right option (Yes, it's chinese - i've used Google Translate on my phone.).
