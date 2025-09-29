@@ -84,8 +84,6 @@ NVRAM:
       # `debug=0x100`     (debug mask; disables watchdog to avoid panic reboot)
       # `keepsyms=1`      (show panic log debug symbols)
       # `msgbuf=1048576`  (Resizes kernel msg buffer to 1 MB; avoids truncation)
-      bluetoothExternalDongleFailed:   Data    | <00>
-      bluetoothInternalControllerInfo: Data    | <000000000000000089653A552EFD>
       boot-args:                       String  | "-v debug=0x100 keepsyms=1 msgbuf=1048576 agdpmod=vit9696"
 @endif
 
@@ -221,6 +219,16 @@ DeviceProperties:
       framebuffer-unifiedmem:         Data    | <00000080>
       hda-gfx:                        String  | "onboard-1"
       model:                          String  | "Intel UHD Graphics 620"
+
+################################################################################
+#                             Security related fixes                           #
+################################################################################
+
+NVRAM:
+  Add:
+    7C436110-AB2A-4BBB-A880-FE41995C9F82:
+      bluetoothExternalDongleFailed:   Data    | <00>
+      bluetoothInternalControllerInfo: Data    | <000000000000000089653A552EFD>
 
 ################################################################################
 #                      Optional BIOS/firmware related fixes                    #
