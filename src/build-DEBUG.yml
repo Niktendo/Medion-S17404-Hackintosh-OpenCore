@@ -43,13 +43,10 @@ Kexts:
   VoodooI2CHID: latest
   IntelBluetoothFirmware:
     specifier: OpenIntelWireless/IntelBluetoothFirmware=latest
-    bundled:
-      - IntelBluetoothFirmware
-      - IntelBTPatcher
-  BrcmPatchRAM:
+  IntelBTPatcher:
+    specifier: OpenIntelWireless/IntelBluetoothFirmware=latest
+  BlueToolFixup:
     specifier: acidanthera/BrcmPatchRAM=latest
-    bundled:
-      - BlueToolFixup
 
 Tools:
   # Also known as UEFIShell
