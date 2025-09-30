@@ -3,6 +3,9 @@ name: Build OpenCore
 on:
   workflow_dispatch:
       inputs:
+        serialdata:
+         required: false
+         description: Custom .serialdata file path
         edition:
          required: true
          type: choice
@@ -11,10 +14,6 @@ on:
          - DEBUG
          - RELEASE
          default: DEBUG
-        serialdata:
-         required: true
-         description: Custom .serialdata file path
-         default: https://raw.githubusercontent.com/Niktendo/Medion-S17404-Hackintosh-OpenCore/refs/heads/main/src/.serialdata.example
 
 env:
   version: 1.0
@@ -35,8 +34,14 @@ jobs:
 
       - name: Build
         run: |
-          mv src/build-${{ inputs.edition }}.yml src/build.yml
+          # Download custom serialdata file if provided
+          if [ -n "${{ inputs.serialdata }}" ]; then
           wget -O src/.serialdata ${{ inputs.serialdata }}
+          fi
+          # Change OpenCore to RELEASE edition if selected
+          if [ "${{ inputs.edition }}" = "RELEASE" ]; then
+          sed -i "s|build: DEBUG|build: RELEASE|g" src/build.yml
+          fi
           wget -O src/bootstrap.sh https://raw.githubusercontent.com/Qonfused/OCE-Build/refs/heads/main/ci/bootstrap.sh
           bash src/bootstrap.sh build -c ${{ github.workspace }} -p config.yml
           
